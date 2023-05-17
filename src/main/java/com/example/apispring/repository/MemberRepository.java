@@ -9,7 +9,8 @@ import java.util.Map;
 @Repository
 public class MemberRepository {
     private static final Map<String, Member> store = new HashMap<>();
-//test
+//test1
+    //test2
     public Member save(Member member) {
         store.put(member.getUserid(), member);
         return member;
