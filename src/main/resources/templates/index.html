@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <title>메인 페이지</title>
 </head>
 <body>
 처음 화면입니다.
+<br>
+<button class="w-100 btn btn-secondary btn-lg"
+        onclick="location.href='item.html'"
+        th:onclick="|location.href='@{/members}'|"
+        type="button">회원목록</button>
 </body>
 </html>
