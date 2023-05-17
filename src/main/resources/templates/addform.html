@@ -2,8 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
-  <link th:href="@{/css/bootstrap.min.css}"
-        href="../css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <style>
     .container {
       max-width: 560px;
@@ -18,10 +17,10 @@
     <h2>회원가입 폼</h2>
   </div>
   <h4 class="mb-3">회원 정보 입력</h4>
-  <form action="addform.html" th:action="@{/add}" method="post">
+  <form action="addform.html" th:action method="post">
     <div>
-      <label for="userId">회원ID </label>
-      <input type="text" id="userId" name="userId" class="form-control"
+      <label for="userid">회원ID </label>
+      <input type="text" id="userid" name="userid" class="form-control"
              placeholder="아이디를 입력하세요">
     </div>
     <div>
@@ -30,8 +29,8 @@
              placeholder="비밀번호를 입력하세요">
     </div>
     <div>
-      <label for="userName">회원이름 </label>
-      <input type="text" id="userName" name="userName" class="form-control"
+      <label for="name">회원이름 </label>
+      <input type="text" id="name" name="name" class="form-control"
              placeholder="이름을 입력하세요">
     </div>
     <hr class="my-4">
