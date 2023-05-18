@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter @Setter
 //test
+//test2
 public class Member {
     private String name;
     private String userid;
