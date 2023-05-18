@@ -17,6 +17,7 @@ public class MainController {
     private final MemberRepository memberRepository;
 
     @GetMapping("/")
+    //test
     public String index() {
         return "index";
     }
