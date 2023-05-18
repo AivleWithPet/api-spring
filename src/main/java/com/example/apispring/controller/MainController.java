@@ -42,6 +42,7 @@ public class MainController {
         return "memberlist";
     }
 //test
+    //test
     @GetMapping("/{userid}")
     public String member(@PathVariable String userid, Model model) {
         Member member = memberRepository.findByUserId(userid);
