@@ -29,9 +29,8 @@
       </thead>
       <tbody>
       <tr th:each="member:${members1}">
+        <td><a href="item.html" th:href="@{{memberId}(memberId=${member.memberId})}" th:text="${member.memberId}">회원ID</a></td>
         <td><a href="item.html" th:text="${member.name}">회원이름</a></td>
-        <td><a href="item.html" th:href="@{{memberId}(memberId=${member.userid})}" th:text="${member.userid}">회원ID</a></td>
-
       </tr>
       </tbody>
     </table>
