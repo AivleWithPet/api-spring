@@ -17,7 +17,7 @@
   <form action="item.html" th:action method="post">
     <div>
       <label for="userid">회원 ID</label>
-      <input type="text" id="userid" name="userid" class="form-control" value="1" th:value="${member.userid}"
+      <input type="text" id="userid" name="userid" class="form-control" value="1" th:value="${member.memberId}"
              readonly>
     </div>
     <div>
@@ -39,7 +39,7 @@
       <div class="col">
         <button class="w-100 btn btn-secondary btn-lg"
                 onclick="location.href='item.html'"
-                th:onclick="|location.href='@{/{memberid}(memberid=${member.userid})}'|"
+                th:onclick="|location.href='@{/{memberid}(memberid=${member.memberId})}'|"
                 type="button">취소</button>
       </div>
     </div>
