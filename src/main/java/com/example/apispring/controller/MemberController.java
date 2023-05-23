@@ -52,30 +52,19 @@ public class MemberController {
         return "memberlist";
     }
 
-//    @GetMapping("/{memberId}/edit")
-//    public String updateformshow(@PathVariable String memberId, Model model) {
-//        MemberDto member = memberService.getMember(memberId);
-//        model.addAttribute("member",member);
-//
-//        return "updateInfo";
-//    }
-//
-//    @PostMapping("/{memberId}/edit")
-//    public String update(@PathVariable String memberId,
-//                         MemberDto updatememberDto) {
-//        System.out.println("updatememberDto = " + updatememberDto);
-//        memberService.updateMemberInfo(memberId,updatememberDto);
-//
-//        return "redirect:/{memberId}";
-//    }
-//    /**
-//     * 태스트용 데이터 추가
-//     */
-//    @PostConstruct
-//    public void init() {
-//        memberService.saveMember("태호1", "taeho1", "1234");
-//        memberService.saveMember("태호2", "taeho2", "1235");
-//        memberService.saveMember("태호3", "taeho3", "1236");
-//        memberService.saveMember("태호4", "taeho4", "1237");
-//    }
+    @GetMapping("/{memberId}/edit")
+    public String updateformshow(@PathVariable String memberId, Model model) {
+        MemberDto member = memberService.getMember(memberId);
+        model.addAttribute("member",member);
+
+        return "updateInfo";
+    }
+
+    @PostMapping("/{memberId}/edit")
+    public String update(@PathVariable String memberId,
+                         MemberDto updatememberDto) {
+        memberService.updateMemberInfo(memberId,updatememberDto.getName(), updatememberDto.getPassword());
+
+        return "redirect:/{memberId}";
+    }
 }

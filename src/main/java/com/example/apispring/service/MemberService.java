@@ -10,5 +10,5 @@ public interface MemberService {
     MemberDto saveMember(String memberId, String memberName, String password);
     MemberDto getMember(String memberId);
     List<MemberDto> findAll();
-//    void updateMemberInfo(String memberId, MemberDto memberDto);
+//    void updateMemberInfo(String memberId, String updatedName, String updatedPassword);
 }
