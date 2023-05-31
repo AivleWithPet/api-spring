@@ -15,6 +15,7 @@ import lombok.*;
 public class MemberEntity {
 
     @Id
+
     String memberId;
     String name;
     String password;

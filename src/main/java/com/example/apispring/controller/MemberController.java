@@ -1,14 +1,19 @@
 package com.example.apispring.controller;
 
+import com.example.apispring.data.JsonConverter;
+import com.example.apispring.data.ai.DjangoClient;
+import com.example.apispring.data.ai.ModelData;
+import com.example.apispring.data.dto.IrisDataDto;
 import com.example.apispring.data.dto.MemberDto;
-import com.example.apispring.domain.Member;
 import com.example.apispring.service.MemberService;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -67,4 +72,27 @@ public class MemberController {
 
         return "redirect:/{memberId}";
     }
+    @GetMapping("/{memberId}/delete")
+    public String delete(@PathVariable String memberId) {
+        memberService.deleteMember(memberId);
+
+        return "redirect:/members";
+    }
+
+    @GetMapping("/modelresult")
+    public String irisdataform() {
+
+        return "irisdataform";
+    }
+
+    @PostMapping("/model_result")
+    public String classificationResult(ModelData modelData) {
+        System.out.println(modelData);
+        System.out.println(modelData.getPrediction());
+
+//        DjangoClient.sendDataToDjango("http://localhost:8000/ai/",jsonData);
+        return "index";
+    }
+//
+//    @GetMapping("/model_result")
 }

@@ -11,4 +11,7 @@ public interface MemberDataHandler {
     MemberEntity getMemberEntity(String memberId);
 
     List<MemberEntity> getMemberEntities();
+
+    MemberEntity updateMemberEntity(String memberId, String updatedName, String updatedPassword);
+    void deleteMember(String memberId);
 }
