@@ -45,19 +45,16 @@ public class MemberServiceImpl implements MemberService {
         return collect;
     }
 
-//    @Override
-//    public void updateMemberInfo(String memberId, String updatedName, String updatedPassword) {
-////        memberDataHandler.updateMemberEntity(memberId, updatedName, updatedPassword);
-//
-//    }
+    @Override
+    public void updateMemberInfo(String memberId, String updatedName, String updatedPassword) {
+        MemberEntity memberEntity = memberDataHandler.updateMemberEntity(memberId, updatedName, updatedPassword);
 
-//    @Override
-//    public void updateMemberInfo(String memberId, MemberDto memberDto) {
-//        MemberEntity memberEntity = memberDataHandler.getMemberEntity(memberId);
-//        memberEntity.set
-//        System.out.println("member.getname = " + memberDto.getName());
-//
-//    }
+    }
+
+    @Override
+    public void deleteMember(String memberId) {
+        memberDataHandler.deleteMember(memberId);
+    }
 
 
 }
