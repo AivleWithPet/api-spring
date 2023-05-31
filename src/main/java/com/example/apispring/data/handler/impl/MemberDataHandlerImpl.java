@@ -3,6 +3,7 @@ package com.example.apispring.data.handler.impl;
 import com.example.apispring.data.dao.MemberDao;
 import com.example.apispring.data.entity.MemberEntity;
 import com.example.apispring.data.handler.MemberDataHandler;
+import com.example.apispring.domain.Member;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,19 @@ public class MemberDataHandlerImpl implements MemberDataHandler {
     public List<MemberEntity> getMemberEntities() {
         return memberDao.getMembers();
     }
+
+    @Override
+    public MemberEntity updateMemberEntity(String memberId, String updatedName, String updatedPassword) {
+        MemberEntity member = memberDao.getMember(memberId);
+        member.setName(updatedName);
+        member.setPassword(updatedPassword);
+        return member;
+    }
+
+    @Override
+    public void deleteMember(String memberId) {
+        memberDao.deleteMember(memberId);
+    }
+
 
 }

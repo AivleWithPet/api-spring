@@ -35,4 +35,9 @@ public class MemberDaoImpl implements MemberDao {
         return members;
     }
 
+    @Override
+    public void deleteMember(String memberId) {
+        memberEntityRepository.deleteById(memberId);
+    }
+
 }

@@ -9,4 +9,6 @@ public interface MemberDao {
     MemberEntity getMember(String memberId);
 
     List<MemberEntity> getMembers();
+
+    void deleteMember(String memberId);
 }
