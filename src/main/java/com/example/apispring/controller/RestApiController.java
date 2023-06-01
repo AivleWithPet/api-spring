@@ -42,17 +42,17 @@ public class RestApiController {
     public void registerUser(@RequestBody RegistrationDto registrationRequest,
                                                RedirectAttributes redirectAttributes,
                              HttpServletResponse response) throws IOException {
-        String email = registrationRequest.getEmail();
+        String memberId = registrationRequest.getMemberId();
         String username = registrationRequest.getUsername();
         String password = registrationRequest.getPassword();
 
-        MemberDto memberDto1 = memberService.saveMember(email, username, password);
+        MemberDto memberDto1 = memberService.saveMember(memberId, username, password);
         redirectAttributes.addAttribute("memberId",memberDto1.getMemberId());
         redirectAttributes.addAttribute("status", true);
 
-        System.out.println(email + username + password);
-        String redirect_uri="http://localhost:8080/members";
-        response.sendRedirect(redirect_uri);
+        System.out.println(memberId + username + password);
+        // String redirect_uri="http://localhost:8080/members";
+        // response.sendRedirect(redirect_uri);
 //        return "redirect:/{memberId}";
 //        return ResponseEntity.ok("회원가입이 성공적으로 완료되었습니다");
     }
