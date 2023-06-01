@@ -1,8 +1,6 @@
 package com.example.apispring.data.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -15,9 +13,12 @@ import lombok.*;
 public class MemberEntity {
 
     @Id
+    private String memberId;
+    private String name;
+    private String password;
 
-    String memberId;
-    String name;
-    String password;
+
+    @Enumerated(EnumType.STRING)
+    private Authority authority;
 
 }
