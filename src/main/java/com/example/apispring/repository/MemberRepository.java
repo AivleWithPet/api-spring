@@ -1,34 +1,11 @@
 package com.example.apispring.repository;
 
-import com.example.apispring.domain.Member;
-import org.springframework.stereotype.Repository;
+import com.example.apispring.data.entity.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
-@Repository
-public class MemberRepository {
-    private static final Map<String, Member> store = new HashMap<>();
-//test1
-    //test2
-    //test3
-    public Member save(Member member) {
-        store.put(member.getUserid(), member);
-        return member;
-    }
-    public Member findByUserId(String userid) {
-        return store.get(userid);
-    }
-
-    public void updateMemberInfo(String userid, Member member) {
-        Member memberForUpdate = store.get(userid);
-        memberForUpdate.setName(member.getName());
-        memberForUpdate.setPassword(member.getPassword());
-    }
-
-    public List<Member> findAll() {
-        return new ArrayList<>(store.values());
-    }
+public interface MemberRepository extends JpaRepository<Member, String> {
+    Optional<Member> findByMemberId(String memberId);
+    boolean existsByMemberId(String memberId);
 }
