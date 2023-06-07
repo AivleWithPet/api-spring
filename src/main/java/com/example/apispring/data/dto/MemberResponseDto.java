@@ -1,6 +1,6 @@
 package com.example.apispring.data.dto;
 
-import com.example.apispring.data.entity.MemberEntity;
+import com.example.apispring.data.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +14,7 @@ public class MemberResponseDto {
     private String memberId;
     private String name;
 
-    public static MemberResponseDto of(MemberEntity member) {
+    public static MemberResponseDto of(Member member) {
         return MemberResponseDto.builder()
                 .memberId(member.getMemberId())
                 .name(member.getName())

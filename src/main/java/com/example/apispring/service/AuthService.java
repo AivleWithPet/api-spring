@@ -3,9 +3,8 @@ package com.example.apispring.service;
 import com.example.apispring.data.dto.MemberRequestDto;
 import com.example.apispring.data.dto.MemberResponseDto;
 import com.example.apispring.data.dto.TokenDto;
-import com.example.apispring.data.entity.MemberEntity;
+import com.example.apispring.data.entity.Member;
 import com.example.apispring.jwt.TokenProvider;
-import com.example.apispring.repository.MemberEntityRepository;
 import com.example.apispring.repository.MemberRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,17 +19,17 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class AuthService {
     private final AuthenticationManagerBuilder managerBuilder;
-    private final MemberEntityRepository memberEntityRepository;
+    private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
 
     public MemberResponseDto signup(MemberRequestDto requestDto) {
-        if (memberEntityRepository.existsByMemberId(requestDto.getMemberId())) {
+        if (memberRepository.existsByMemberId(requestDto.getMemberId())) {
             throw new RuntimeException("이미 가입되어 있는 유저입니다");
         }
 
-        MemberEntity member = requestDto.toMember(passwordEncoder);
-        return MemberResponseDto.of(memberEntityRepository.save(member));
+        Member member = requestDto.toMember(passwordEncoder);
+        return MemberResponseDto.of(memberRepository.save(member));
     }
 
     public TokenDto login(MemberRequestDto requestDto) {

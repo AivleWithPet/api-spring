@@ -1,7 +1,7 @@
 package com.example.apispring.service;
 
-import com.example.apispring.data.entity.MemberEntity;
-import com.example.apispring.repository.MemberEntityRepository;
+import com.example.apispring.data.entity.Member;
+import com.example.apispring.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,17 +15,17 @@ import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
-public class MemberUserDetailsService implements UserDetailsService {
-    private final MemberEntityRepository memberEntityRepository;
+public class CustomMemberDetailsService implements UserDetailsService {
+    private final MemberRepository memberRepository;
 
     @Override
     public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
-        return memberEntityRepository.findByMemberId(memberId)
+        return memberRepository.findByMemberId(memberId)
                 .map(this::createUserDetails)
                 .orElseThrow(() -> new UsernameNotFoundException(memberId + " 을 DB에서 찾을 수 없습니다"));
     }
 
-    private UserDetails createUserDetails(MemberEntity member) {
+    private UserDetails createUserDetails(Member member) {
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(member.getAuthority().toString());
 
         return new User(

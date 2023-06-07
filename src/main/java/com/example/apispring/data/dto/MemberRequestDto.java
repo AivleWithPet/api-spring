@@ -1,7 +1,7 @@
 package com.example.apispring.data.dto;
 
 import com.example.apispring.data.entity.Authority;
-import com.example.apispring.data.entity.MemberEntity;
+import com.example.apispring.data.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,8 +18,8 @@ public class MemberRequestDto {
     private String password;
     private String name;
 
-    public MemberEntity toMember(PasswordEncoder passwordEncoder) {
-        return MemberEntity.builder()
+    public Member toMember(PasswordEncoder passwordEncoder) {
+        return Member.builder()
                 .memberId(memberId)
                 .password(passwordEncoder.encode(password))
                 .name(name)
