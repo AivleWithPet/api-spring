@@ -1,6 +1,6 @@
-package com.example.apispring.data.dto;
+package com.example.apispring.dto;
 
-import com.example.apispring.data.entity.Member;
+import com.example.apispring.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

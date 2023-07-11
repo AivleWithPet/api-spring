@@ -1,8 +1,8 @@
 package com.example.apispring.service;
 
 import com.example.apispring.config.SecurityUtil;
-import com.example.apispring.data.dto.MemberResponseDto;
-import com.example.apispring.data.entity.Member;
+import com.example.apispring.dto.MemberResponseDto;
+import com.example.apispring.entity.Member;
 import com.example.apispring.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

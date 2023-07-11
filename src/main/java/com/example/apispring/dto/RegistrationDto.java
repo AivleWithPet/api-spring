@@ -1,4 +1,4 @@
-package com.example.apispring.data.dto;
+package com.example.apispring.dto;
 
 import lombok.Getter;
 import lombok.Setter;

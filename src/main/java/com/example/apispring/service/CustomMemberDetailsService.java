@@ -1,6 +1,6 @@
 package com.example.apispring.service;
 
-import com.example.apispring.data.entity.Member;
+import com.example.apispring.entity.Member;
 import com.example.apispring.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

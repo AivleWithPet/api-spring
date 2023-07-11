@@ -1,4 +1,4 @@
-package com.example.apispring.data.ai;
+package com.example.apispring.ai;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import java.net.URI;

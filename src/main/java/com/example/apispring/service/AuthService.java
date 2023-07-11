@@ -1,9 +1,9 @@
 package com.example.apispring.service;
 
-import com.example.apispring.data.dto.MemberRequestDto;
-import com.example.apispring.data.dto.MemberResponseDto;
-import com.example.apispring.data.dto.TokenDto;
-import com.example.apispring.data.entity.Member;
+import com.example.apispring.dto.MemberRequestDto;
+import com.example.apispring.dto.MemberResponseDto;
+import com.example.apispring.dto.TokenDto;
+import com.example.apispring.entity.Member;
 import com.example.apispring.jwt.TokenProvider;
 import com.example.apispring.repository.MemberRepository;
 import jakarta.transaction.Transactional;

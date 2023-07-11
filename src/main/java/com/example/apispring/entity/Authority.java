@@ -1,4 +1,4 @@
-package com.example.apispring.data.entity;
+package com.example.apispring.entity;
 
 public enum Authority {
 
