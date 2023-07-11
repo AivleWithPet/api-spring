@@ -1,20 +1,22 @@
 package com.example.apispring.data.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Member {
     @Id
-    private String memberId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
+    private Long id;
 
+    @Column
+    private String email;
     @Column
     private String name;
 
@@ -24,11 +26,11 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
-    @Builder
-    public Member(String memberId, String name, String password, Authority authority) {
-        this.memberId = memberId;
-        this.name = name;
-        this.password = password;
-        this.authority = authority;
-    }
+//    @Builder
+//    public Member(String memberId, String name, String password, Authority authority) {
+//        this.memberId = memberId;
+//        this.name = name;
+//        this.password = password;
+//        this.authority = authority;
+//    }
 }

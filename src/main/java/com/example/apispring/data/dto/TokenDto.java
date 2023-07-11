@@ -13,4 +13,8 @@ public class TokenDto {
     private String grantType;
     private String accessToken;
     private Long tokenExpiresIn;
+
+    private Long refreshTokenExpiresIn;
+    private String refreshToken;//refresh토큰
+    private String name;//회원 이름
 }
