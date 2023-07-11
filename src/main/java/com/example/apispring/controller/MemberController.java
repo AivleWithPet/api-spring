@@ -26,7 +26,7 @@ public class MemberController {
 
     @PostMapping("/name")
     public ResponseEntity<MemberResponseDto> setName(@RequestBody MemberRequestDto request) {
-        return ResponseEntity.ok(memberService.changeMemberName(request.getMemberId(), request.getName()));
+        return ResponseEntity.ok(memberService.changeMemberName(request.getEmail(), request.getName()));
     }
 
     @PostMapping("/password")
