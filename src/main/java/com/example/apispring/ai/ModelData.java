@@ -1,4 +1,4 @@
-package com.example.apispring.data.ai;
+package com.example.apispring.ai;
 
 import lombok.Getter;
 import lombok.Setter;

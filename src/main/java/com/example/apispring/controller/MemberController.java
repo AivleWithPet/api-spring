@@ -1,8 +1,8 @@
 package com.example.apispring.controller;
 
-import com.example.apispring.data.dto.ChangePasswordRequestDto;
-import com.example.apispring.data.dto.MemberRequestDto;
-import com.example.apispring.data.dto.MemberResponseDto;
+import com.example.apispring.dto.ChangePasswordRequestDto;
+import com.example.apispring.dto.MemberRequestDto;
+import com.example.apispring.dto.MemberResponseDto;
 import com.example.apispring.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
