@@ -4,7 +4,7 @@
 - [Intellij (IDE)](https://www.jetbrains.com/ko-kr/idea/download/?section=windows)
 - [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 - [MySQL Workbench 8.0.34](https://dev.mysql.com/downloads/workbench/)
-
+- 운영체제에 따라 시스템 환경 변수 설정이 필요할 수 있습니다.
 
 ### Installation
 ``` bash
