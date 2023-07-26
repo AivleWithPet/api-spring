@@ -24,12 +24,12 @@ public class MemberController {
         // return ResponseEntity.ok(memberService.getMyInfoBySecurity());
     }
 
-    @PostMapping("/name")
+    @PostMapping("/changeName")
     public ResponseEntity<MemberResponseDto> setName(@RequestBody MemberRequestDto request) {
         return ResponseEntity.ok(memberService.changeMemberName(request.getEmail(), request.getName()));
     }
 
-    @PostMapping("/password")
+    @PostMapping("/changePw")
     public ResponseEntity<MemberResponseDto> setMemberPassword(@RequestBody ChangePasswordRequestDto request) {
         return ResponseEntity.ok(memberService.changeMemberPassword(request.getExPassword(), request.getNewPassword()));
     }
