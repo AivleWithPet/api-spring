@@ -1,25 +1,27 @@
 package com.example.apispring.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
-public class PetDisease {
-
+public class Diagnosis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "disease_id")
+    @Column(name = "diagnosis_id")
     private Long id;
+
+    @CreationTimestamp
+    @Column
+    private LocalDateTime created_at;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pet_id")
     private Pet pet;
 
-    @CreationTimestamp
-    @Column
-    private LocalDateTime receiptAt = LocalDateTime.now();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "disease_id")
+    private Disease disease;
+
 }

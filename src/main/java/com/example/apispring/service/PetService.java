@@ -1,8 +1,10 @@
 package com.example.apispring.service;
 
 import com.example.apispring.config.SecurityUtil;
+import com.example.apispring.dto.ModelRequestDto;
 import com.example.apispring.dto.PetRequestDto;
 import com.example.apispring.dto.PetResponseDto;
+import com.example.apispring.dto.ResultResponseDto;
 import com.example.apispring.entity.Member;
 import com.example.apispring.entity.Pet;
 import com.example.apispring.repository.MemberRepository;
@@ -26,5 +28,9 @@ public class PetService {
     public Member isMemberCurrent() {
         return memberRepository.findById(SecurityUtil.getCurrentMemberId())
                 .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));
+    }
+
+    public ResultResponseDto result(ModelRequestDto modelRequestDto) {
+
     }
 }
