@@ -1,7 +1,9 @@
 package com.example.apispring.controller;
 
+import com.example.apispring.dto.ModelRequestDto;
 import com.example.apispring.dto.PetRequestDto;
 import com.example.apispring.dto.PetResponseDto;
+import com.example.apispring.dto.ResultResponseDto;
 import com.example.apispring.service.PetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,5 +19,10 @@ public class PetController {
     @PostMapping("/")
     public ResponseEntity<PetResponseDto> enrollPet(@RequestBody PetRequestDto petRequestDto) {
         return ResponseEntity.ok(petService.enroll(petRequestDto));
+    }
+
+    @PostMapping("/result")
+    public ResponseEntity<ResultResponseDto> result(@RequestBody ModelRequestDto modelRequestDto) {
+        return ResponseEntity.ok(petService.result(modelRequestDto));
     }
 }
