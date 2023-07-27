@@ -1,16 +1,15 @@
 package com.example.apispring.service;
 
 import com.example.apispring.config.SecurityUtil;
-import com.example.apispring.dto.ModelRequestDto;
-import com.example.apispring.dto.PetRequestDto;
-import com.example.apispring.dto.PetResponseDto;
-import com.example.apispring.dto.ResultResponseDto;
+import com.example.apispring.dto.*;
 import com.example.apispring.entity.Member;
 import com.example.apispring.entity.Pet;
 import com.example.apispring.repository.MemberRepository;
 import com.example.apispring.repository.PetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +30,10 @@ public class PetService {
     }
 
     public ResultResponseDto result(ModelRequestDto modelRequestDto) {
+        return null;
+    }
 
+    public List<PetResponseDto> getMyPets(Long memberId) {
+        return petRepository.searchMyPets(memberId);
     }
 }

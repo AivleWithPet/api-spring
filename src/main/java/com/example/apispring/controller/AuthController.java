@@ -1,5 +1,6 @@
 package com.example.apispring.controller;
 
+import com.example.apispring.dto.LoginInfoDto;
 import com.example.apispring.dto.MemberRequestDto;
 import com.example.apispring.dto.MemberResponseDto;
 import com.example.apispring.dto.TokenDto;
@@ -24,18 +25,18 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDto> login(@RequestBody MemberRequestDto requestDto) {
+    public ResponseEntity<LoginInfoDto> login(@RequestBody MemberRequestDto requestDto) {
         return ResponseEntity.ok(authService.login(requestDto));
     }
 
-    @PostMapping("/refresh-token")
+    @PostMapping("/refresh-token") //이거 네이밍 마음에 안듦 바꾸자
     public TokenDto refreshToken(@RequestBody TokenDto tokenDto) {
         String refreshToken = tokenDto.getRefreshToken();
         if (tokenProvider.validateToken(refreshToken)) {
             Authentication authentication = tokenProvider.getAuthentication(refreshToken);
 
             // 새로운 액세스 토큰 생성
-            TokenDto newTokenDto = tokenProvider.generateTokenDto(authentication,"");
+            TokenDto newTokenDto = tokenProvider.generateTokenDto(authentication);
             System.out.println("새로운 액세스 토큰:" + newTokenDto.getRefreshToken());
             // 새로운 토큰 DTO를 클라이언트로 전송합니다.
             return newTokenDto;
