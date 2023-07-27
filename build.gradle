@@ -1,8 +1,19 @@
+// queryDsl버전 - 2023.06.13
+buildscript {
+    ext {
+        queryDslVersion = "5.0.0"
+    }
+}
+//배포때 querydsl 오류나던거 이 블로그 참고함 - 23-06-26
+//https://velog.io/@juhyeon1114/Spring-QueryDsl-gradle-%EC%84%A4%EC%A0%95-Spring-boot-3.0-%EC%9D%B4%EC%83%81
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.6'
     id 'io.spring.dependency-management' version '1.1.0'
+    //6-26 태호가 바꿈
+    id 'com.ewerk.gradle.plugins.querydsl' version '1.0.10'
 }
+
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -30,6 +41,11 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
+    implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+    annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
+    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+
     implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
@@ -39,4 +55,31 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+def querydslDir = "$buildDir/generated/querydsl"
+tasks.withType(JavaCompile) {
+    options.annotationProcessorGeneratedSourcesDirectory = file(querydslDir)
+}
+clean.doLast {
+    file(querydslDir).deleteDir()
+}
+
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir}
+
+sourceSets {
+    main.java.srcDirs += [ querydslDir ]
+}
+
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    querydsl.extendsFrom compileClasspath
 }

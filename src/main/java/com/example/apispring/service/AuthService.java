@@ -1,5 +1,6 @@
 package com.example.apispring.service;
 
+import com.example.apispring.dto.LoginInfoDto;
 import com.example.apispring.dto.MemberRequestDto;
 import com.example.apispring.dto.MemberResponseDto;
 import com.example.apispring.dto.TokenDto;
@@ -32,13 +33,14 @@ public class AuthService {
         return MemberResponseDto.of(memberRepository.save(member));
     }
 
-    public TokenDto login(MemberRequestDto requestDto) {
+    public LoginInfoDto login(MemberRequestDto requestDto) {
         UsernamePasswordAuthenticationToken authenticationToken = requestDto.toAuthentication();
         Member member = memberRepository.findByEmail(requestDto.getEmail()).orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));
         String name = member.getName();
+        Long memberId = member.getId();
         Authentication authentication = managerBuilder.getObject().authenticate(authenticationToken);
-
-        return tokenProvider.generateTokenDto(authentication,name);
+        TokenDto tokenDto = tokenProvider.generateTokenDto(authentication);
+        return new LoginInfoDto(tokenDto.getAccessToken(), tokenDto.getRefreshToken(), name, memberId);
     }
 
 }
