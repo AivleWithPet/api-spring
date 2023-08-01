@@ -30,6 +30,10 @@ public class QDiagnosis extends EntityPathBase<Diagnosis> {
 
     public final QPet pet;
 
+    public final StringPath PhotoName = createString("PhotoName");
+
+    public final StringPath PhotoPath = createString("PhotoPath");
+
     public QDiagnosis(String variable) {
         this(Diagnosis.class, forVariable(variable), INITS);
     }
@@ -48,7 +52,7 @@ public class QDiagnosis extends EntityPathBase<Diagnosis> {
 
     public QDiagnosis(Class<? extends Diagnosis> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.disease = inits.isInitialized("disease") ? new QDisease(forProperty("disease"), inits.get("disease")) : null;
+        this.disease = inits.isInitialized("disease") ? new QDisease(forProperty("disease")) : null;
         this.pet = inits.isInitialized("pet") ? new QPet(forProperty("pet"), inits.get("pet")) : null;
     }
 

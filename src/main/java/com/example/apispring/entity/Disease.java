@@ -15,11 +15,12 @@ public class Disease {
     @Column(name = "disease_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pet_id")
-    private Pet pet;
-
-    @CreationTimestamp
     @Column
-    private LocalDateTime receiptAt = LocalDateTime.now();
+    private String name;
+
+    @Column
+    private String inform;
+
+    @Column
+    private String supplements;
 }

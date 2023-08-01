@@ -1,16 +1,24 @@
 package com.example.apispring.entity;
 
 import jakarta.persistence.*;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Setter
 public class Diagnosis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "diagnosis_id")
     private Long id;
+
+    @Column
+    private String PhotoName;
+
+    @Column
+    private String PhotoPath;
 
     @CreationTimestamp
     @Column
