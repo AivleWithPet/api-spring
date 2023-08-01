@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,7 +18,12 @@ public class PetController {
     private final PetService petService;
 
     @PostMapping("/")
-    public ResponseEntity<PetResponseDto> enrollPet(@RequestBody PetRequestDto petRequestDto) {
+    public ResponseEntity<PetResponseDto> enrollPet(@RequestParam("photo") MultipartFile file,
+                                                    @RequestParam("name") String name,
+                                                    @RequestParam("species") String species,
+                                                    @RequestParam("birth") String birth,
+                                                    @RequestParam("info") String info) {
+        PetRequestDto petRequestDto = new PetRequestDto(species,Integer.parseInt(birth),name,info);
         return ResponseEntity.ok(petService.enroll(petRequestDto));
     }
 
