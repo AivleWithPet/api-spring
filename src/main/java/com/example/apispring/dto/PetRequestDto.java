@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
+@AllArgsConstructor
 public class PetRequestDto {
     private String species;
     private int birthYear;
