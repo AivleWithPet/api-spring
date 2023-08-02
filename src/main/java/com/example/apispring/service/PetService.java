@@ -49,7 +49,7 @@ public class PetService {
 //        System.out.println(petId);
 
         // 저장 디렉토리
-        String uploadDir = "images";
+        String uploadDir = "src/main/resources/images";
 
         // 디렉토리 없을 경우 생성
         File directory = new File(uploadDir);
@@ -58,7 +58,8 @@ public class PetService {
         }
 
         // 서버의 파일 시스템에 이미지 파일을 저장합니다.
-        String filePath = uploadDir + File.separator + imageFile.getOriginalFilename();
+        String filePath = System.getProperty("user.dir") + "/" + uploadDir + File.separator + imageFile.getOriginalFilename();
+
         File dest = new File(filePath);
 
 //        System.out.println("File Name: " + imageFile.getOriginalFilename());
@@ -76,8 +77,8 @@ public class PetService {
         Diagnosis diagnosis = new Diagnosis();
         diagnosis.setDisease(existingDisease);
         diagnosis.setPet(existingPet);
-//        diagnosis.setPhotoName(imageFile.getOriginalFilename());
-//        diagnosis.setPhotoPath(filePath);
+        diagnosis.setPhotoName(imageFile.getOriginalFilename());
+        diagnosis.setPhotoPath(filePath);
 
         diagnosis = diagnosisRepository.save(diagnosis);
 
