@@ -11,5 +11,5 @@ public class PetResponseDto {
     private String species;
     private Integer birthYear;
     private String info;
-    private byte[] photoData;
+    private String photoData;
 }

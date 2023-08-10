@@ -127,7 +127,7 @@ public class PetService {
 
             byte[] fileData = getFileData(findPetDto.getPhotoPath());
 
-            temp.setPhotoData(fileData);
+            temp.setPhotoData(Base64.getEncoder().encodeToString(fileData));
             petResponseDtos.add(temp);
 
         }
