@@ -30,11 +30,11 @@ public class PetController {
         return ResponseEntity.ok(petService.enroll(petRequestDto));
     }
 
-    @PostMapping(value= "/result", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    @PostMapping("/result")
     public ResponseEntity<ResultResponseDto> result(
             @RequestParam("petId") Long petId,
             @RequestParam("result") String result,
-            @RequestPart MultipartFile imageFile
+            @RequestParam("imageFile") MultipartFile imageFile
     ) {
 
         try {
@@ -49,6 +49,12 @@ public class PetController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+
+//    @GetMapping("/results")
+//    public ResponseEntity<List<PetResponseDto>> getResults(@RequestParam(name = "petId") Long petId){
+//        return ResponseEntity.ok(petService.getResults(petId));
+//    }
 
     @GetMapping("/myPets")
     public ResponseEntity<List<PetResponseDto>> getMyPets(@RequestParam(name = "memberId") Long memberId){
