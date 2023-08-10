@@ -32,6 +32,8 @@ public class QPet extends EntityPathBase<Pet> {
 
     public final StringPath petName = createString("petName");
 
+    public final StringPath photoPath = createString("photoPath");
+
     public final StringPath species = createString("species");
 
     public QPet(String variable) {

@@ -1,6 +1,6 @@
 package com.example.apispring.repository;
 
-import com.example.apispring.dto.PetResponseDto;
+import com.example.apispring.dto.FindPetDto;
 import com.example.apispring.entity.Pet;
 import com.example.apispring.entity.QPet;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -19,17 +19,17 @@ public class PetRepositoryImpl implements PetRepositoryCustom{
 
 
     @Override
-    public List<PetResponseDto> searchMyPets(Long memberId) {
+    public List<FindPetDto> searchMyPets(Long memberId) {
         QPet pet = QPet.pet;
 
         BooleanExpression memberIdPredicate = pet.member.id.eq(memberId);
 
         List<Pet> pets = queryFactory.selectFrom(pet).where(memberIdPredicate).fetch();
-        List<PetResponseDto> petResponseDtos = pets
+        List<FindPetDto> findPetDtos = pets
                 .stream()
-                .map(PetResponseDto::of)
+                .map(FindPetDto::of)
                 .collect(Collectors.toList());
 
-        return petResponseDtos;
+        return findPetDtos;
     }
 }

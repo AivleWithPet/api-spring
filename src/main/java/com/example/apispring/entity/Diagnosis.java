@@ -17,10 +17,10 @@ public class Diagnosis {
     private Long id;
 
     @Column
-    private String PhotoName;
+    private String photoName;
 
     @Column
-    private String PhotoPath;
+    private String photoPath;
 
     @CreationTimestamp
     @Column
