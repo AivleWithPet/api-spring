@@ -12,6 +12,7 @@ public class ResultResponseDto {
     private String inform;
     private String supplements;
     private String diseaseName;
+    private Double percentage;
     private LocalDateTime createdAt;
     private String imageBase64;
 }

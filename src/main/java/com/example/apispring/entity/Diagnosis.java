@@ -22,6 +22,9 @@ public class Diagnosis {
     @Column
     private String photoPath;
 
+    @Column
+    private Double percentage;
+
     @CreationTimestamp
     @Column
     private LocalDateTime created_at;

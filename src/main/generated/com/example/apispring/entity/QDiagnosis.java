@@ -28,6 +28,8 @@ public class QDiagnosis extends EntityPathBase<Diagnosis> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final NumberPath<Double> percentage = createNumber("percentage", Double.class);
+
     public final QPet pet;
 
     public final StringPath photoName = createString("photoName");
