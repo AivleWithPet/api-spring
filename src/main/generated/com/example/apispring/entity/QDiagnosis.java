@@ -30,9 +30,9 @@ public class QDiagnosis extends EntityPathBase<Diagnosis> {
 
     public final QPet pet;
 
-    public final StringPath PhotoName = createString("PhotoName");
+    public final StringPath photoName = createString("photoName");
 
-    public final StringPath PhotoPath = createString("PhotoPath");
+    public final StringPath photoPath = createString("photoPath");
 
     public QDiagnosis(String variable) {
         this(Diagnosis.class, forVariable(variable), INITS);

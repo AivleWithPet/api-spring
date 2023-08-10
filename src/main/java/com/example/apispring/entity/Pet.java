@@ -29,16 +29,20 @@ public class Pet {
     @Column
     private String info;
 
+    @Column
+    private String photoPath;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    public static Pet enrollPet (String species,Integer birthYear, String petName, String info , Member member) {
+    public static Pet enrollPet (String species,Integer birthYear, String petName, String info , String photoPath, Member member) {
         Pet pet  = new Pet();
         pet.species = species;
         pet.birthYear = birthYear;
         pet.petName = petName;
         pet.info = info;
+        pet.photoPath = photoPath;
         pet.member = member;
 
         return pet;

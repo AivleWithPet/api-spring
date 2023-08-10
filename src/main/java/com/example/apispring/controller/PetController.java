@@ -3,7 +3,6 @@ package com.example.apispring.controller;
 import com.example.apispring.dto.*;
 import com.example.apispring.service.PetService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +20,19 @@ public class PetController {
     private final PetService petService;
 
     @PostMapping("/")
-    public ResponseEntity<PetResponseDto> enrollPet(@RequestParam("photo") MultipartFile file,
-                                                    @RequestParam("name") String name,
-                                                    @RequestParam("species") String species,
-                                                    @RequestParam("birth") String birth,
-                                                    @RequestParam("info") String info) {
-        PetRequestDto petRequestDto = new PetRequestDto(species,Integer.parseInt(birth),name,info);
-        return ResponseEntity.ok(petService.enroll(petRequestDto));
+    public ResponseEntity<FindPetDto> enrollPet(@RequestParam("photo") MultipartFile file,
+                                                @RequestParam("name") String name,
+                                                @RequestParam("species") String species,
+                                                @RequestParam("birth") String birth,
+                                                @RequestParam("info") String info) {
+        PetRequestDto petRequestDto = new PetRequestDto(file, species,Integer.parseInt(birth),name,info);
+        try {
+            return ResponseEntity.ok(petService.enroll(petRequestDto));
+        }catch (IOException e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
     }
 
     @PostMapping("/result")
