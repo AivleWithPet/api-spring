@@ -11,11 +11,14 @@ import com.example.apispring.repository.MemberRepository;
 import com.example.apispring.repository.PetDiseaseRepository;
 import com.example.apispring.repository.PetRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -25,7 +28,6 @@ public class PetService {
     private final PetDiseaseRepository petDiseaseRepository;
     private final MemberRepository memberRepository;
     private final DiagnosisRepository diagnosisRepository;
-
 
     public PetResponseDto enroll(PetRequestDto petRequestDto) {
         Member member = isMemberCurrent();
@@ -82,13 +84,26 @@ public class PetService {
 
         diagnosis = diagnosisRepository.save(diagnosis);
 
+        String imageBase64 = encodeImageToBase64(filePath);
         ResultResponseDto resultResponseDto = new ResultResponseDto();
         resultResponseDto.setInform(existingDisease.getInform());
         resultResponseDto.setSupplements(existingDisease.getSupplements());
         resultResponseDto.setDiseaseName(existingDisease.getName());
+        resultResponseDto.setCreatedAt(diagnosis.getCreated_at());
+        resultResponseDto.setImageBase64(imageBase64);
 
         return resultResponseDto;
     }
+
+    private String encodeImageToBase64(String filePath) throws IOException {
+        File imageFile = new File(filePath);
+        byte[] imageBytes = Files.readAllBytes(imageFile.toPath());
+        return Base64.getEncoder().encodeToString(imageBytes);
+    }
+
+//    public List<PetResponseDto> getResults(Long petId) {
+//        return petRepository.myPetResults(petId);
+//    }
 
     public List<PetResponseDto> getMyPets(Long memberId) {
         return petRepository.searchMyPets(memberId);
