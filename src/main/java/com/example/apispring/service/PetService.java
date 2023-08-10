@@ -65,6 +65,7 @@ public class PetService {
         MultipartFile imageFile = modelRequestDto.getImageFile();
         String diseaseName = modelRequestDto.getResult();
         Long petId = modelRequestDto.getPetId();
+        Double percentage = modelRequestDto.getPercentage();
 
 //        System.out.println(imageFile);
 //        System.out.println(diseaseName);
@@ -101,6 +102,7 @@ public class PetService {
         diagnosis.setPet(existingPet);
         diagnosis.setPhotoName(imageFile.getOriginalFilename());
         diagnosis.setPhotoPath(filePath);
+        diagnosis.setPercentage(percentage);
 
         diagnosis = diagnosisRepository.save(diagnosis);
 
@@ -109,6 +111,7 @@ public class PetService {
         resultResponseDto.setInform(existingDisease.getInform());
         resultResponseDto.setSupplements(existingDisease.getSupplements());
         resultResponseDto.setDiseaseName(existingDisease.getName());
+        resultResponseDto.setPercentage(diagnosis.getPercentage());
         resultResponseDto.setCreatedAt(diagnosis.getCreated_at());
         resultResponseDto.setImageBase64(imageBase64);
 

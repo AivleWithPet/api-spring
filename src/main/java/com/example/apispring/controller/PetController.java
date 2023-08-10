@@ -39,6 +39,7 @@ public class PetController {
     public ResponseEntity<ResultResponseDto> result(
             @RequestParam("petId") Long petId,
             @RequestParam("result") String result,
+            @RequestParam("percentage") Double percentage,
             @RequestParam("imageFile") MultipartFile imageFile
     ) {
 
@@ -46,6 +47,7 @@ public class PetController {
             ModelRequestDto modelRequestDto = new ModelRequestDto();
             modelRequestDto.setPetId(petId);
             modelRequestDto.setResult(result);
+            modelRequestDto.setPercentage(percentage);
             modelRequestDto.setImageFile(imageFile);
 
             return ResponseEntity.ok(petService.result(modelRequestDto));
