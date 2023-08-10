@@ -10,5 +10,6 @@ public class ModelRequestDto {
 
     private Long petId;
     private String result;
+    private Double percentage;
     private MultipartFile imageFile;
 }
