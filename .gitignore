@@ -19,6 +19,7 @@ bin/
 
 ### IntelliJ IDEA ###
 .idea
+!**/main/resources/images/
 *.iws
 *.iml
 *.ipr
