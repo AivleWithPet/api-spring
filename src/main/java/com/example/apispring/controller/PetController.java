@@ -58,10 +58,10 @@ public class PetController {
     }
 
 
-//    @GetMapping("/results")
-//    public ResponseEntity<List<PetResponseDto>> getResults(@RequestParam(name = "petId") Long petId){
-//        return ResponseEntity.ok(petService.getResults(petId));
-//    }
+    @GetMapping("/results")
+    public ResponseEntity<List<ResultResponseDto>> getResults(@RequestParam(name = "petId") Long petId){
+        return ResponseEntity.ok(petService.getResults(petId));
+    }
 
     @GetMapping("/myPets")
     public ResponseEntity<List<PetResponseDto>> getMyPets(@RequestParam(name = "memberId") Long memberId){
