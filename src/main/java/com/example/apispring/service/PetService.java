@@ -19,10 +19,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -67,10 +64,6 @@ public class PetService {
         Long petId = modelRequestDto.getPetId();
         Double percentage = modelRequestDto.getPercentage();
 
-//        System.out.println(imageFile);
-//        System.out.println(diseaseName);
-//        System.out.println(petId);
-
         // 저장 디렉토리
         String uploadDir = "src/main/resources/images";
 
@@ -85,9 +78,6 @@ public class PetService {
 
         File dest = new File(filePath);
 
-//        System.out.println("File Name: " + imageFile.getOriginalFilename());
-//        System.out.println("Dest Path: " + dest.getAbsolutePath());
-//        System.out.println("File Size: " + imageFile.getSize());
 
         imageFile.transferTo(dest);
 
@@ -117,6 +107,8 @@ public class PetService {
 
         return resultResponseDto;
     }
+
+
 
     private String encodeImageToBase64(String filePath) throws IOException {
         File imageFile = new File(filePath);
@@ -149,6 +141,30 @@ public class PetService {
 
         }
         return petResponseDtos;
+    }
+
+    public List<ResultResponseDto> getResults(Long petId) {
+        List<FindPetDiagnosisDto> findPetDiagnosisDtos = diagnosisRepository.searchDiagnosis(petId);
+        List<ResultResponseDto> resultResponseDtoList = new ArrayList<>();
+
+        for( FindPetDiagnosisDto findPetDiagnosisDto : findPetDiagnosisDtos) {
+            ResultResponseDto temp = new ResultResponseDto();
+            String name = findPetDiagnosisDto.getDisease().getName();
+            Disease disease = petDiseaseRepository.findByName(name)
+                    .orElseThrow(() -> new RuntimeException("해당 질환 정보를 찾을 수 없습니다"));
+
+            temp.setCreatedAt(findPetDiagnosisDto.getCreatedAt());
+            temp.setDiseaseName(name);
+            temp.setPercentage(findPetDiagnosisDto.getPercentage());
+            temp.setInform(disease.getInform());
+            temp.setSupplements(disease.getSupplements());
+
+            byte[] fileData = getFileData(findPetDiagnosisDto.getPhotoPath());
+            temp.setImageBase64(Base64.getEncoder().encodeToString(fileData));
+
+            resultResponseDtoList.add(temp);
+        }
+        return resultResponseDtoList;
     }
 
     private byte[] getFileData(String filePath) {
