@@ -30,7 +30,6 @@ public class TokenProvider {
     private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7; // 7일
     private final Key key;
     private static final Logger log = LoggerFactory.getLogger(JwtFilter.class);
-    //    private final Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     public TokenProvider(@Value("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") String secretKey) {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
