@@ -28,7 +28,7 @@ public class AuthController {
         return ResponseEntity.ok(authService.login(requestDto));
     }
 
-    @PostMapping("/refresh-token") //이거 네이밍 마음에 안듦 바꾸자
+    @PostMapping("/refresh-token")
     public TokenDto refreshToken(@RequestBody TokenDto tokenDto) {
         String refreshToken = tokenDto.getRefreshToken();
         if (tokenProvider.validateToken(refreshToken)) {

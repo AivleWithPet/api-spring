@@ -11,7 +11,6 @@ import com.example.apispring.repository.MemberRepository;
 import com.example.apispring.repository.PetDiseaseRepository;
 import com.example.apispring.repository.PetRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -115,10 +114,6 @@ public class PetService {
         byte[] imageBytes = Files.readAllBytes(imageFile.toPath());
         return Base64.getEncoder().encodeToString(imageBytes);
     }
-
-//    public List<PetResponseDto> getResults(Long petId) {
-//        return petRepository.myPetResults(petId);
-//    }
 
     public List<PetResponseDto> getMyPets(Long memberId) {
         List<FindPetDto> findPetDtos = petRepository.searchMyPets(memberId);
